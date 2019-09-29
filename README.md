@@ -1,2 +1,2 @@
-# Master branch protector app
+# Master branch protector
 
