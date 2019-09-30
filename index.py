@@ -25,11 +25,14 @@ def index():
     elif request.method == 'POST':
         # Store the IP address of the requester
         request_ip = ipaddress.ip_address(u'{0}'.format(request.remote_addr))
+        data = request.data
         logging.info("IP : " +str(request_ip))
+        logging.info("DATA : "+str(data))
         logging.info("METHOD : "+request.method)
+        load = request.get_json()
         logging.info("EVENT : "+request.headers.get('X-GitHub-Event'))
         if request.headers.get('X-GitHub-Event') == "repository":
-            action=str(load['action'])
+            action=str(load['action'][0])
             logging.info("ACTION : "+action)
             repo_name=str(load['repository']['name'])
             logging.info("REPO NAME : "+ repo_name)
@@ -53,7 +56,7 @@ def index():
                     master_branch=repo.get_branch("master")
                     master_branch.edit_protection()
                 logging.info("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
-                if master_branch.protected is True:
+                if master_branch.protected is True:        
                     issue=repo.create_issue("Master branch protection")
                     issue.create_comment("@aliceh, protection was enabled on master branch")
                     logging.info("Comment sent to @aliceh")
