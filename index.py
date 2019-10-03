@@ -25,14 +25,17 @@ def index():
     elif request.method == 'POST':
         # Store the IP address of the requester
         request_ip = ipaddress.ip_address(u'{0}'.format(request.remote_addr))
-        data = request.data
+        #data = request.data
         logging.info("IP : " +str(request_ip))
-        logging.info("DATA : "+str(data))
+        #logging.info("DATA : "+str(data))
         logging.info("METHOD : "+request.method)
-        load = request.get_json()
+        load=request.get_json()
         logging.info("EVENT : "+request.headers.get('X-GitHub-Event'))
         if request.headers.get('X-GitHub-Event') == "repository":
-            action=str(load['action'][0])
+            try: 
+                action=str(load['action'])
+            except TypeError or AttributeError:
+                action='invalid'
             logging.info("ACTION : "+action)
             repo_name=str(load['repository']['name'])
             logging.info("REPO NAME : "+ repo_name)
