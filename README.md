@@ -2,7 +2,7 @@
 
 This is a simple web service that listens for organization events to know when a repository has been created. When a repository is created, the protection on master branch is automatically enabled, and an issue is created in the repository where a designated person is notified with a @mention that outlines the protections that were added.
 
-Instructions to run on Ubuntu
+#Instructions to run on Ubuntu
 
 
 sudo apt-get update
@@ -25,7 +25,7 @@ python3 -m venv $VENV
 
 $VENV/bin/pip install --upgrade pip setuptools
 
-
+git clone https://github.com/aliceh/Master-branch-protector
 
 $VENV/bin/pip install -r ~Master-branch-protector/requirements.txt 
 
