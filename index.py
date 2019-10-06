@@ -25,17 +25,13 @@ def index():
     elif request.method == 'POST':
         # Store the IP address of the requester
         request_ip = ipaddress.ip_address(u'{0}'.format(request.remote_addr))
-        #data = request.data
         logging.info("IP : " +str(request_ip))
-        #logging.info("DATA : "+str(data))
-        logging.info("METHOD : "+request.method)
         load=request.get_json()
-        logging.info("EVENT : "+request.headers.get('X-GitHub-Event'))
-        if request.headers.get('X-GitHub-Event') == "repository":
-            try: 
-                action=str(load['action'])
-            except TypeError or AttributeError:
-                action='invalid'
+        if load==None:
+            load=json.loads(request.form['payload'])
+        if 'action' in load:
+            print(load)
+            action = str(load['action'])
             logging.info("ACTION : "+action)
             repo_name=str(load['repository']['name'])
             logging.info("REPO NAME : "+ repo_name)
@@ -44,6 +40,7 @@ def index():
             if action=='created':
                 g=Github(args.github_token)
                 repo=g.get_repo(org_and_repo)
+                master_branch = None
                 for i in range(1,5):
                     logging.info("TRYING for master BRANCH")
                     time.sleep(.5)
@@ -51,18 +48,23 @@ def index():
                         master_branch=repo.get_branch("master")
                         logging.info("GOT master BRANCH")
                         break
-                counter=0
-                while (master_branch.protected is False) and counter <5:
-                    time.sleep(.5)
+                if (master_branch != None):
+                    was_protected = master_branch.protected is True
+                    counter=0
+                    while (not (master_branch.protected is True)) and counter < 5:
+                        time.sleep(.5)
+                        logging.info("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
+                        print("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
+                        master_branch=repo.get_branch("master")
+                        master_branch.edit_protection()
+                        counter += 1
                     logging.info("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
-                    repo=g.get_repo(org_and_repo)
-                    master_branch=repo.get_branch("master")
-                    master_branch.edit_protection()
-                logging.info("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
-                if master_branch.protected is True:        
-                    issue=repo.create_issue("Master branch protection")
-                    issue.create_comment("@aliceh, protection was enabled on master branch")
-                    logging.info("Comment sent to @aliceh")
+                    print("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
+                    if (not was_protected) and (master_branch.protected is True):
+                        issue=repo.create_issue("Master branch protection")
+                        issue.create_comment("@aliceh, protection was enabled on master branch")
+                        logging.info("Comment sent to @aliceh")
+                        print("Comment sent to @aliceh")
 
     return 'OK'
 if __name__ == "__main__":
