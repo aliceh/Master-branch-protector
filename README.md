@@ -29,4 +29,4 @@ git clone https://github.com/aliceh/Master-branch-protector
 
 $VENV/bin/pip install -r ~Master-branch-protector/requirements.txt 
 
-python index.py --port 6543 --token "2343455666777655433222233454322"
+python master_branch_protector.py --port 6543 --token "2343455666777655433222233454322"
