@@ -63,8 +63,17 @@ $VENV/bin/pip3 install -r ~Master-branch-protector/requirements.txt
 Launching the application 
 -------------------------
 
-1. Choose a post on your system where the web server will be listening to incoming requests from the Guthub webhook that you will create. Make sure that the port is open for incoming requests from GitHub.
+1. Choose a port on your system (such as 8080) where the web server will be listening to incoming requests from the Guthub webhook that you will create. Make sure that the port is open for incoming traffic from GitHub.
 
-2. Create a github webhook 
+2. Create a github webhook with the URL of the webserver. 
 
+* Go to the Settings page for your Organization
+* Click Webhooks > Add webhook
+* For Payload URL, use the URL of your system with the port where the webserver is listening. (Example: http:10.128.98.5:8080)
+* For Content type, both application/json and application/x-www-form-urlencoded work
+* Leave the Secrets field blank
+* Select Send me everything or Let me select individual events, and mark Repositories
+* Finish by clicking Add webhook. You may be prompted to enter your GitHub password to confirm your action.
+
+3. Finally 
 python master_branch_protector.py  -m "johnsmith" --port 6543 --token "2343455666777655433222233454322"
