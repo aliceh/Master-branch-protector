@@ -22,7 +22,7 @@ With virtualenv (recommended):
 ```
  python3-venv, python3-virtualenv 
 ````
-Ubuntu:
+For example, on Ubuntu:
 ------
 ```
 sudo apt-get updte
