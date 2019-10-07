@@ -81,8 +81,18 @@ Launching the application
 ```
 python3 master_branch_protector.py -m <github user name to use in @mention> -p <the port specified in the webhook on which the webserver is listening> -t <github token to access the organization events> 
 ```
-Example:
+## Example
+
+Without virtualenv:
+
 ```
+python3 master_branch_protector.py  -m "johnsmith" -p 6543 -t "2343455666777655433222233454322"
+```
+With virtualenv:
+
+```
+source $VENV/bin/activate
+
 python3 master_branch_protector.py  -m "johnsmith" -p 6543 -t "2343455666777655433222233454322"
 ```
 For help run 
