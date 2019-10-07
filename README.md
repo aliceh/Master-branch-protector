@@ -77,7 +77,12 @@ Launching the application
 * Select Send me everything or Let me select individual events, and mark Repositories
 * Finish by clicking Add webhook. You may be prompted to enter your GitHub password to confirm your action.
 
-3. Finally, launch the application from command line and pass the following arguments.
+3. If you are using virtualenv, run the following.
+
+```
+source $VENV/bin/activate
+```
+4. Finally, launch the application from command line and pass the following arguments.
 ```
 python3 master_branch_protector.py -m <github user name to use in @mention> -p <the port specified in the webhook on which the webserver is listening> -t <github token to access the organization events> 
 ```
