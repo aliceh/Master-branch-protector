@@ -60,11 +60,11 @@ cd ~/Master-branch-protector/
 ```
 Without virtualenv:
 ```
-pip3 install -r ~Master-branch-protector/requirements.txt 
+pip3 install -r requirements.txt 
 ````
 With virtualenv (recommended):
 ```
-$VENV/bin/pip3 install -r ~Master-branch-protector/requirements.txt 
+$VENV/bin/pip3 install -r requirements.txt 
 ```
 Launching the application 
 -------------------------
