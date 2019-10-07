@@ -1,6 +1,6 @@
 # Master branch protector
 
-This is a simple web service listening for organization events to know when a repository has been created. When a repository is created, the protection on master branch is automatically enabled, and an issue is created in the repository where a designated person is notified with a @mention that outlines the protections that were added.
+This application is a simple web service listening for organization https://developer.github.com/webhooks/#events. When a repository is created, the protection on master branch is enabled by the app, and an issue is created in the repository where a designated person is notified with a @mention.
 
 Prerequisites
 =============
@@ -10,7 +10,7 @@ Prior to installing the dependencies, you may need to install the following libr
 
 * python3, python3-pip, python3-distutils, python3-lib2to3
 
-If you are using virtualenv (recommended):
+With virtualenv (recommended):
 
 
 * python3-venv, python3-virtualenv 
@@ -20,17 +20,15 @@ Ubuntu:
 
     sudo apt-get install python3 python3-pip python3-distutils python3-lib2to3
     
-    If you are using virtualenv (recommended):
+    If you are going to use virtualenv (recommended):
     sudo apt-get install python3-venv python3-virtualenv 
 
 Running the Master branch protector application
 ===============================================
 
 
-If you are using virtualenv (recommended):
 
-
-Setting up virtualenv
+Setting up virtualenv (recommended)
 ---------------------
 
 mkdir -p env
@@ -52,12 +50,14 @@ Without virtualenv:
 
 pip3 install -r ~Master-branch-protector/requirements.txt 
 
-If you are using virtualenv (recommended):
+With virtualenv (recommended):
 
 $VENV/bin/pip3 install -r ~Master-branch-protector/requirements.txt 
 
 Launching the application 
 -------------------------
+
+The application 
 
 
 python master_branch_protector.py --port 6543 --token "2343455666777655433222233454322"
