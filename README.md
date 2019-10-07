@@ -55,6 +55,8 @@ Setting up the application dependencies
 ------------------------
 ```
 git clone https://github.com/aliceh/Master-branch-protector
+
+cd ~/Master-branch-protector/
 ```
 Without virtualenv:
 ```
