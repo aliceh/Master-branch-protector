@@ -36,7 +36,7 @@ Running the Master branch protector application
 
 Setting up virtualenv (recommended)
 ---------------------
-
+```
 mkdir -p env
 
 cd ~/env
@@ -46,20 +46,20 @@ export VENV=~/env
 python3 -m venv $VENV
 
 $VENV/bin/pip install --upgrade pip setuptools
-
+```
 Setting up the application dependencies
 ------------------------
-
+```
 git clone https://github.com/aliceh/Master-branch-protector
-
+```
 Without virtualenv:
-
+```
 pip3 install -r ~Master-branch-protector/requirements.txt 
-
+````
 With virtualenv (recommended):
-
+```
 $VENV/bin/pip3 install -r ~Master-branch-protector/requirements.txt 
-
+```
 Launching the application 
 -------------------------
 
