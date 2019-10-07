@@ -88,7 +88,7 @@ Without virtualenv:
 ```
 python3 master_branch_protector.py  -m "johnsmith" -p 6543 -t "2343455666777655433222233454322"
 ```
-With virtualenv:
+With virtualenv (recommended):
 
 ```
 source $VENV/bin/activate
