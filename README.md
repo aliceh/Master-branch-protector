@@ -10,16 +10,13 @@ Prior to installing the dependencies, you may need to install the following libr
 
 * python3, python3-pip, python3-distutils, python3-lib2to3
 
-If you are using virtualenv (recommended):
-
-
-::
-
+<bold>If you are using virtualenv (recommended):</bold>
 
 
 * python3-venv, python3-virtualenv 
 
 Ubuntu:
+------
 
     `sudo apt-get install python3 python3-pip python3-distutils python3-lib2to3'
     
