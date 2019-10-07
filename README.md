@@ -1,9 +1,12 @@
 # Master branch protector
 
-This application is a simple web service listening for organization https://developer.github.com/webhooks/#events. When a repository is created, the protection on master branch is enabled by the app, and an issue is created in the repository where a designated person is notified with a @mention.
+This application is a simple web service listening for [organization events](https://developer.github.com/webhooks/#events). When a repository is created, the protection on master branch is enabled by the app, and an issue is created in the repository where a designated person is notified with a @mention.
 
 Prerequisites
-=============
+================
+
+
+The [organization events](https://developer.github.com/webhooks/#events)
 
 Prior to installing the dependencies, you may need to install the following libraries. We recomend that you run the application in virtualenv.
 
