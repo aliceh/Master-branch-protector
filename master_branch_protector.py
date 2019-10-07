@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin python
 import logging
 import json
 import requests
@@ -8,14 +8,16 @@ import time
 from flask import Flask, request
 from github import Github
 
-logging.basicConfig(filename='webhook_handler.log',level=logging.INFO)
+logging.basicConfig(filename='master_branch_protector.log',level=logging.INFO)
 
 
 app = Flask(__name__)
 parser = argparse.ArgumentParser()
-parser.add_argument('--token', dest='github_token',
-                    help='Github access token for enabling protection on branches and adding comments')
-parser.add_argument('--port', type=int, default=80, dest='port_number', help='The port on which to run the webserver.')
+parser.add_argument('-t','--token', dest='github_token',
+                    help='Github access token for enabling protection on branches and adding comments.')
+parser.add_argument('-p','--port', type=int, default=80, dest='port_number', help='The port on which the webserver will listen.')
+
+parser.add_argument('-m','--mention', dest='github_mention', help='The github username to use in @mention.')
 args = parser.parse_args()
 
 @app.route("/", methods=['GET', 'POST'])
@@ -30,7 +32,6 @@ def index():
         if load==None:
             load=json.loads(request.form['payload'])
         if 'action' in load:
-            print(load)
             action = str(load['action'])
             logging.info("ACTION : "+action)
             repo_name=str(load['repository']['name'])
@@ -54,17 +55,14 @@ def index():
                     while (not (master_branch.protected is True)) and counter < 5:
                         time.sleep(.5)
                         logging.info("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
-                        print("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
                         master_branch=repo.get_branch("master")
                         master_branch.edit_protection()
                         counter += 1
                     logging.info("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
-                    print("MASTER BRANCH PROTECTION STATUS : "+ str(master_branch.protected))
                     if (not was_protected) and (master_branch.protected is True):
                         issue=repo.create_issue("Master branch protection")
-                        issue.create_comment("@aliceh, protection was enabled on master branch")
-                        logging.info("Comment sent to @aliceh")
-                        print("Comment sent to @aliceh")
+                        issue.create_comment("@"+ args.github_mention + ", protection was enabled on master branch")
+                        logging.info("Comment sent to @" + args.github_mention)
 
     return 'OK'
 if __name__ == "__main__":
