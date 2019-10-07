@@ -37,11 +37,11 @@ Running the Master branch protector application
 Setting up virtualenv (recommended)
 ---------------------
 
-'mkdir -p env'
+mkdir -p env
 
-'cd ~/env'
+cd ~/env
 
-'export VENV=~/env'
+export VENV=~/env
 
 python3 -m venv $VENV
 
