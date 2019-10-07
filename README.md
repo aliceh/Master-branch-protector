@@ -25,6 +25,8 @@ With virtualenv (recommended):
 Ubuntu:
 ------
 ```
+sudo apt-get updte
+
 sudo apt-get install python3 python3-pip python3-distutils python3-lib2to3
 ```    
 If you are going to use virtualenv (recommended):
