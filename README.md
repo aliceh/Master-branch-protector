@@ -10,7 +10,11 @@ Prior to installing the dependencies, you may need to install the following libr
 
 * python3, python3-pip, python3-distutils, python3-lib2to3
 
-And if you are using virtualenv (recommended):
+If you are using virtualenv (recommended):
+
+
+::
+
 
 
 * python3-venv, python3-virtualenv 
