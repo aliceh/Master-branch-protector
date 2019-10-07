@@ -2,11 +2,11 @@
 
 This application is a simple web service listening for [organization events](https://developer.github.com/webhooks/#events) posted by a [github webhook](https://help.github.com/en/articles/about-webhooks). When a repository is created by the organization, the app enables protection on the master branch, and an issue is created in the repository where a designated person is notified with a @mention.
 
-To run the app 
+To run the app you will need:
 
-* you will need an access token to a GitHub account of a member of the organization with admin privileges.
+*  an access token to a GitHub account of a member of the organization with admin privileges.
 
-* you will need to create a webhook in GitHub. Only members with owner privileges for an organization or admin privileges for a repository can manage webhooks for an organization. For more information, see ["Permission levels for an organization."](https://help.github.com/en/articles/permission-levels-for-an-organization)
+*  to create a webhook in GitHub. Only members with owner privileges for an organization or admin privileges for a repository can manage webhooks for an organization. For more information, see ["Permission levels for an organization."](https://help.github.com/en/articles/permission-levels-for-an-organization)
 
 Prerequisites
 ================
