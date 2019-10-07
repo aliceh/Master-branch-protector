@@ -41,7 +41,7 @@ Running the Master branch protector application
 Setting up virtualenv (recommended)
 ---------------------
 ```
-mkdir -p env
+mkdir env
 
 cd ~/env
 
