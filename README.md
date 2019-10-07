@@ -25,10 +25,11 @@ With virtualenv (recommended):
 Ubuntu:
 ------
 ```
-    sudo apt-get install python3 python3-pip python3-distutils python3-lib2to3
-    
-    If you are going to use virtualenv (recommended):
-    sudo apt-get install python3-venv python3-virtualenv 
+sudo apt-get install python3 python3-pip python3-distutils python3-lib2to3
+```    
+If you are going to use virtualenv (recommended):
+```    
+sudo apt-get install python3-venv python3-virtualenv 
 ```
 Running the Master branch protector application
 ===============================================
